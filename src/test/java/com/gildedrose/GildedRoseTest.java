@@ -64,13 +64,14 @@ class GildedRoseTest {
     @Test
     void Conjured(){
         Item[] items = new Item[] {
-                new Item("Conjured", 10, 10),
-                new Item("Conjured", 10, 1)
+                new Item("Item Conjured", 10, 10),
+                new Item("Item Conjured", 0, 10),
+                new Item("Item Conjured", 0, 3)
         };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
         assertThat(app.items[0].quality, equalTo(8));
-        assertThat(app.items[1].quality, equalTo(0));
+        assertThat(app.items[1].quality, equalTo(6));
+        assertThat(app.items[2].quality, equalTo(0));
     }
-
 }
