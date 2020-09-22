@@ -7,6 +7,55 @@ class GildedRose {
         this.items = items;
     }
 
+    public void updateBrie(Item item){
+        item.sellIn --;
+        if(item.quality <= 50) item.quality ++;
+    }
+
+
+    public void updateBackstage(Item item){
+        item.sellIn --;
+        if(item.quality <= 50){
+            item.quality ++;
+            if(item.sellIn <= 10){
+                if(item.sellIn <= 5){
+                    item.quality ++;
+                }
+                item.quality++;
+            }
+        }
+    }
+
+    public void updateDefault(Item item){
+        item.sellIn --;
+        if(item.sellIn <= 0){
+            if(item.quality >= 2){
+                item.quality -= 2;
+            }
+            else item.quality = 0;
+        }
+    }
+
+
+    public void updateQuality(){
+
+        for (Item item : items) {
+            switch(item.name){
+                case "Sulfuras, Hand of Ragnaros":
+                    break;
+                case "Aged Brie":
+                    updateBrie(item);
+                    break;
+                case "Backstage passes to a TAFKAL80ETC concert":
+                    updateBackstage(item);
+                    break;
+                default:
+                    updateDefault(item);
+                    break;
+            }
+        }
+    }
+    /*
     public void updateQuality() {
         for (int i = 0; i < items.length; i++) {
 
@@ -63,5 +112,5 @@ class GildedRose {
                 }
             }
         }
-    }
+    }*/
 }
